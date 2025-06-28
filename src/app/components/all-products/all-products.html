@@ -1,0 +1,42 @@
+<section class="all-products">
+    <div class="container">
+        <h3>welcome to our shopping website, start browsing...</h3>
+        <div class="products-items">
+            
+            @for(product of products(); track product){
+                    <div class="product-card" (click)="viewProduct(product)">
+                        <div class="card-img">
+                            <img [src]="product.thumbnail" alt="product">
+                        </div>
+                        <div class="title-price">
+                            <h4 class="title">{{product.title}}</h4>
+                            <p class="price">{{product.price | pricediscount:product.discountPercentage}}</p>
+                        </div> 
+                        <p class="description">{{product.description}}</p>
+                        <div class="rate">
+                            {{product.rating}}
+                        </div>
+                        <div class="stock" [ngClass]="product.stock > 0 ? 'in-stock' : 'out-of-stock'">
+                            @if(product.stock>0){
+                                <p>in stock</p>
+                            }
+                            @else{
+                                <p>out of stock</p>
+                            }
+                        </div>
+                        <div class="wish-product" >
+                            @if(wishlistStore.inWish(product.id)){
+                                <fa-icon [ngClass]="{'in-wishlist': wishlistStore.inWish(product.id)}" (click)="wishlistStore.removeFromFavourites(product.id); $event.stopPropagation();"  [icon]="faHeart"></fa-icon>
+                            }
+                            @else{
+                                <fa-icon (click)="wishlistStore.addToFavourites(product); $event.stopPropagation();" [icon]="faHeart"></fa-icon>
+                            }
+                        </div>
+                        <div class="button-cart">
+                            <button [ngClass]="{'in-cart': isInCart(product.id),'not-in-cart': !isInCart(product.id)}"(click)="toggleCart(product); $event.stopPropagation();">{{ isInCart(product.id) ? 'Remove from Cart' : 'Add to Cart' }}</button>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>
+</section>

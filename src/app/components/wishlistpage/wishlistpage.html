@@ -1,0 +1,22 @@
+<section class="wishlist">
+    <div class="container">
+        <h2>My Wishlist</h2>
+
+        @if (wishItems().length > 0) {
+        <div class="wishlist-items">
+            @for (item of wishItems(); track item.id) {
+            <div class="wishlist-item">
+                <img [src]="item.thumbnail" alt="product" />
+                <div class="details">
+                    <h4>{{ item.title }}</h4>
+                </div>
+                <fa-icon [icon]="faTrash" (click)="remove(item.id)"></fa-icon>
+            </div>
+            }
+        </div>
+        } @else {
+        <p>No products in wishlist yet.</p>
+        }
+    </div>
+
+</section>

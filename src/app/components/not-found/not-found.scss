@@ -1,0 +1,19 @@
+.not-found {
+    .not-found-wrapper {
+        width: 100%;
+        height: calc(100vh - 150px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h4 {
+            color: #92abe2;
+            font-size: 50px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 30px;
+            text-transform: capitalize;
+        }
+    }
+}

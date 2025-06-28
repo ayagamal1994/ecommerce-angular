@@ -1,0 +1,24 @@
+.wishlist{
+    .wishlist-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-top: 10px;
+        img {
+            height: 150px;
+        }
+        fa-icon {
+            cursor: pointer;
+        }
+    }
+    .wishlist-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #d2d0d0;
+    }
+}

@@ -1,0 +1,29 @@
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">
+                <h2><a routerLink="allproducts" routerLinkActive="active-link">products app</a></h2>
+            </div>
+            <ul class="links">
+                <li><a routerLink="register" routerLinkActive="active-link">register</a></li>
+                <li><a routerLink="login" routerLinkActive="active-link">login</a></li>
+                <li class="wish-list">
+                    <a routerLink="wishlist" routerLinkActive="active-link">
+                        <fa-icon [icon]="faHeart"></fa-icon>
+                    </a>
+                    <div class="wish-number">
+                        {{wishlistStore.totalCount()}}
+                    </div>
+                </li>
+                <li class="cart">
+                    <a routerLink="cart" routerLinkActive="active-link">
+                        <fa-icon [icon]="faCart"></fa-icon>
+                    </a>
+                    <div class="cart-number">
+                        {{cartCountValue()}}
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

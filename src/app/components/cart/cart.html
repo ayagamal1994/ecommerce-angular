@@ -1,0 +1,29 @@
+<section class="cart">
+    <div class="container">
+        @for(product of cartProducts(); track product){
+            <div class="cart-item">
+                <div class="cart-desc">
+                    <div class="cart-img">
+                        <img [src]="product.thumbnail" alt="product">
+                    </div>
+                    <div class="cart-details">
+                        <h3>{{product.title}}</h3>
+                        <p>{{product.shippingInformation}}</p>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <fa-icon [icon]="faMinus" (click)="decrease(product.id)"></fa-icon>
+                   
+                    <p>{{product.quantity}}</p>
+                    <fa-icon [icon]="faPlus" (click)="increase(product.id)"></fa-icon>
+                </div>
+                <h3 class="price">{{product.price * product.quantity}}</h3>
+                <div class="remove-product" (click)="remove(product.id)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </div>
+            </div>
+        }
+
+        <h3 class="total">total: {{getCartTotal()}}</h3>
+    </div>
+</section>

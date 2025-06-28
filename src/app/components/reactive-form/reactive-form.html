@@ -1,0 +1,76 @@
+<form [formGroup] = "reactiveForm" (ngSubmit) = "submit()">
+
+    <div class="form-item">
+        <label for="name">name</label>
+        <input id="name" type="text" placeholder="your name" formControlName="name">
+        @if(reactiveForm.get("name")?.touched && reactiveForm.get("name")?.errors){
+            @if(reactiveForm.get("name")?.getError("required")){
+                <p class="error">name is required</p>
+            }
+        }
+    </div>
+
+    <div class="form-item">
+        <label for="email">email</label>
+        <input id="email" type="text" placeholder="your email" formControlName="email">
+        @if(reactiveForm.get("email")?.touched && reactiveForm.get("email")?.errors){
+            @if(reactiveForm.get("email")?.getError("required")){
+                <p class="error">email is required</p>
+            }
+            @if(reactiveForm.get("email")?.getError("pattern")){
+                <p class="error">email is invalid</p>
+            }
+        }
+    </div>
+
+    <div class="form-item">
+        <label for="user">user name</label>
+        <input id="user" type="text" placeholder="your username" formControlName="user">
+        @if(reactiveForm.get("user")?.touched && reactiveForm.get("user")?.errors){
+            @if(reactiveForm.get("user")?.getError("required")){
+                <p class="error">user name is required</p>
+            }
+            @if(reactiveForm.get("user")?.getError("pattern")){
+                <p class="error">spaces are not allowed</p>
+            }
+        }
+    </div>
+
+    <div class="form-item">
+        <label for="pass">password</label>
+        <input id="pass" type="password" placeholder="your password" formControlName="password">
+        @if(reactiveForm.get("password")?.touched && reactiveForm.get("password")?.errors){
+            @if(reactiveForm.get("password")?.getError("required")){
+                <p class="error">password is required</p>
+            }
+            @if(reactiveForm.get("password")?.getError("pattern")){
+                <p class="error">password is invalid</p>
+            }
+        }
+    </div>
+
+    <div class="form-item">
+        <label for="confirm">confirm password</label>
+        <input id="confirm" type="password" placeholder="confirm password" formControlName="confirm">
+
+        @if(reactiveForm.get("confirm")?.touched && reactiveForm.errors?.["passwordInCorrect"]){
+            <p class="error">password don't match</p> 
+        }
+    </div>
+
+    <div formArrayName="addresses" class="form-addresses">
+        <label>Address</label>
+        @for(address of addresses.controls; track address; let i=$index){
+            <div [formGroupName]="i" class="address-item">
+                <input formControlName="address" type="text" placeholder="address">
+                <input formControlName="street" type="text" placeholder="street">
+                <input formControlName="country" type="text" placeholder="country">
+                <input formControlName="city" type="text" placeholder="city">
+                <button (click)="removeAddress(i)">remove</button>
+            </div>
+        }
+        <button (click)="addAddress()">add address</button>
+    </div>
+
+    <button class="register" [disabled]="!reactiveForm.valid">register</button>
+</form>

@@ -1,0 +1,50 @@
+form {
+    margin-top: 100px !important;
+    width: 70%;
+    margin: auto;
+    border: 2px solid #94c5ef;
+    background-color: #fcfbfb;
+    padding: 20px;
+    border-radius: 10px;
+    text-transform: capitalize;
+
+    .form-item {
+        height: 80px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        border: 1px solid #94c5ef;
+        border-radius: 5px;
+    }
+    input:focus {
+        outline: none;
+    }
+    input.ng-invalid.ng-touched {
+        border: 1px solid #dc5b5b;
+    }
+    input.ng-valid.ng-touched {
+        border: 1px solid #5bdcb1;
+    }
+    button{
+        background-color: #94c5ef;
+        border: 1px solid #94c5ef;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-transform: capitalize;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+    }
+    .error {
+        color: #dc5b5b;
+        font-size: 12px;
+        margin:0;
+    }
+}

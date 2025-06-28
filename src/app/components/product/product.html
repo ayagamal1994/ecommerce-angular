@@ -1,0 +1,47 @@
+<section class="product">
+    <div class="container">
+        @if (productDetails(); as p) {
+        <div class="product-item">
+            <div class="product-imgs">
+                <img [src]="p.images[0]" alt="product">
+            </div>
+            <div class="product-details">
+                <h4>{{p.title}}</h4>
+                <p>{{p.description}}</p>
+                <div class="rating">
+                    {{p.rating}}
+                </div> 
+                <p class="price">{{p.price | pricediscount:p.discountPercentage}}</p>
+                <div class="stock" [ngClass]="p.stock>0 ? 'in-stock': 'out-of-stock'">
+                    @if(p.stock>0){
+                        <p>in stock</p>
+                    }@else {
+                        <p>out of stock</p>
+                    }
+                </div>
+                <h4>more information</h4>
+                <div class="tags">
+                    @for(tag of p.tags; track tag){
+                        <p>{{tag}}</p>
+                    }
+                </div>
+                
+                <div class="quantity">
+                    <fa-icon [icon]="faMinus" (click)="decrease(p.id)"></fa-icon>
+                    <p>{{cartItemQuantity()}}</p>
+                    
+                    <fa-icon [icon]="faPlus" (click)="increase(p.id)"></fa-icon>
+                
+                </div>
+                <p>only {{p.stock}} left, don't miss it</p>
+                <div class="button-cart">
+                    <button [ngClass]="{'in-cart': isInCart(p.id),'not-in-cart': !isInCart(p.id)}"(click)="toggleCart(p); $event.stopPropagation();">{{ isInCart(p.id) ? 'Remove from Cart' : 'Add to Cart' }}</button>
+                </div>
+            </div>
+            
+            
+        </div>
+        }
+        
+    </div>
+</section>
